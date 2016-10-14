@@ -1,0 +1,93 @@
+<div class="container" style="margin-top: 100px;" ng-init="init()">
+
+  <div ng-show="isNotEmpty">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1>Create order</h1>
+      </div>
+      <div class="panel-body form-horizontal">
+
+        <div class="alert alert-danger" ng-show="errorVisible">
+          <strong>Error!</strong>
+          <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+
+        <div ng-show="isFinish">
+          <div class="alert alert-success" style="font-size: 24px;">
+            <strong>Success!</strong> Order create success
+            <p> order number: {{finishData._id}} </p>
+          </div>
+        </div>
+
+        <div ng-show="!isFinish">
+          <div class="form-group">
+            <label class="control-label col-sm-2 input-lg">Email:</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control input-lg" ng-model="model.email" placeholder="Enter email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2 input-lg">Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-lg" ng-model="model.name" placeholder="Enter name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2 input-lg">Second name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-lg" ng-model="model.secondName" placeholder="Enter second name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2 input-lg">Address:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-lg" ng-model="model.address" placeholder="Enter address">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2 input-lg">Phone:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-lg" ng-model="model.phone" placeholder="Enter phone">
+            </div>
+          </div>
+          <div style="float: left; font-size: 24px;">All price: {{allPrice}}</div>
+          <button type="button" class="btn btn-success btn-lg" style="float: right;" ng-click="onCreate()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default" ng-repeat="item in items">
+      <div class="panel-body">
+        <div class="media">
+          <div class="media-left">
+            <img ng-src="{{item.imgUrl[0]}}" class="media-object" style="width:150px">
+          </div>
+          <div class="media-body">
+            <button type="button" class="btn btn-danger btn-lg" style="float: right;  margin-top: 10px;" ng-click="onRemove(item)">
+                  remove
+          </button>
+            <a type="button" href="#/categories/{{item.categories}}/{{item._id}}" class="btn btn-success btn-lg"
+               style="float: right; margin-right: 10px; margin-top: 10px;">
+                  view
+          </a>
+            <h2>{{item.name}}</h4>
+              <h3>{{item.shortDesc}}</h4>
+                <p>Price: {{item.price}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="!isNotEmpty">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h1>Basket is empty</h1>
+      </div>
+    </div>
+  </div>
