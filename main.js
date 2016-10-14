@@ -12,6 +12,7 @@ const Categories = require("./modules/categoriesController.js");
 const Products = require("./modules/productController.js");
 const Basket = require("./modules/basketController.js");
 const Order = require("./modules/orderController.js");
+const Account =  require("./modules/accountContrller.js");
 
 const app = express();
 
@@ -137,6 +138,17 @@ app.post('/order', (req, res) => {
       else
         res.send(data);
     });
+});
+
+app.put('/account', (req, res) => {
+  var data = req.query;
+  Account.signUp(data.email, data.pass, data.name, data.secondName, data.address, data.phone, 
+  (err, doc) => {
+    if(err) 
+      res.status(404).send(err);
+    else
+      res.send(doc);
+  });
 });
 
 app.listen(config.get("port"), config.get("host"), () => {
