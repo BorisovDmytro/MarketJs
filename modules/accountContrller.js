@@ -28,7 +28,7 @@ exports.getByEmail = (email, cb) => {
 }
 
 exports.autoLogin = (email, hashedPass, cb) => {
-  Model.find({ email: email }, (err, doc) => {
+  Model.findOne({ email: email }, (err, doc) => {
     if (err)
       cb(err, null);
     else if (doc.password == hashedPass)
@@ -45,7 +45,6 @@ exports.manualLogin = (emal, pass, cb) => {
 
 exports.signUp = (email, pass, name, secondName, address, phone, cb) => {
   exports.getByEmail(email, (err, doc) => {
-    console.log("EMAIL", doc);
     if (!doc) {
       var account = Model({
         date: new Date().toISOString(),

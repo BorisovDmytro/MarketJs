@@ -6,18 +6,21 @@ const path = require('path');
 const config = require('./config');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const bodyParser = require('body-parser')
+
 const MongoSessionStore = require('connect-mongo')(session);
 
 const Categories = require("./modules/categoriesController.js");
 const Products = require("./modules/productController.js");
 const Basket = require("./modules/basketController.js");
 const Order = require("./modules/orderController.js");
-const Account =  require("./modules/accountContrller.js");
+const Account = require("./modules/accountContrller.js");
 
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
+app.use(bodyParser.json())
 
 app.use(session({
   name: 'session_id',
@@ -142,12 +145,37 @@ app.post('/order', (req, res) => {
 
 app.put('/account', (req, res) => {
   var data = req.query;
-  Account.signUp(data.email, data.pass, data.name, data.secondName, data.address, data.phone, 
-  (err, doc) => {
-    if(err) 
+  Account.signUp(data.email, data.pass, data.name, data.secondName, data.address, data.phone,
+    (err, doc) => {
+      if (err)
+        res.status(404).send(err);
+      else
+        res.send(doc);
+    });
+});
+
+app.get('/account', (req, res) => {
+  if (req.session.user) {
+    var account = req.session.user;
+    Account.autoLogin(account.email, account.pass, (err, doc) => {
+      if (err)
+        res.status(404).send("not login");
+      else
+        res.send(doc)
+    });
+  } else {
+    res.status(404).send("not login");
+  }
+});
+
+app.post('/account', (req, res) => {
+  Account.manualLogin(req.body.email, req.body.pass, (err, doc) => {
+    if (err)
       res.status(404).send(err);
-    else
+    else {
+      req.session.user = doc;
       res.send(doc);
+    }
   });
 });
 
