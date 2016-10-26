@@ -8,7 +8,6 @@ app.controller('categoriesCtrl', ['$scope', '$location', 'ProductService',
     function onNextPageLoad(name, pageIndex) {
       ProductService.getProduct(name, pageIndex, function (err, data) {
         if (!err) {
-          console.log(data);
           data.forEach(function (value, indx, arr) {
             $scope.model.push(value);
           });

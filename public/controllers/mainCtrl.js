@@ -5,6 +5,7 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
     $scope.loginError = false;
     $scope.categories = [];
     $scope.searchText = "";
+    $scope.isLogin = false;
 
     $scope.signUpModel = {
       email: "",
@@ -20,7 +21,16 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
       pass: ""
     }
 
-    AccountService.autoLogin();
+    $scope.loginLog = "account";
+
+    AccountService.autoLogin(function(user) {
+      if(user) {
+        $scope.loginLog = user.name;
+        $scope.isLogin = true;
+      } else {
+        console.log('not loged');
+      }
+    });
 
     $scope.init = function () {
       var type = $location.path().split('/')[1];
@@ -87,11 +97,24 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
           if(err) {
             $scope.loginErrorMessage = err;
             $scope.loginError = true;
+            $scope.isLogin = true;
           } else {
             $scope.loginError = false;
+            $('#loginDlg').modal('hide');
           }
         });
       }
+    }
+
+    $scope.onLogOut = function() {
+      AccountService.logOut(function(err) {
+        if(err)
+          console.error(err);
+        else {
+          $scope.loginLog = "account";
+          $scope.isLogin = false;
+        }  
+      });
     }
   }]);
 

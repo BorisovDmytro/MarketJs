@@ -52,11 +52,14 @@ exports.addItem = function (id, idProduct, cb) {
 }
 
 exports.removeItem = function (id, idProduct, cb) {
+  console.log('REMOVE');
   exports.getById(id, (err, doc) => {
+    console.log("ERROR", err);
     if (err)
       cb(err, null);
     else {
       var index = doc.items.indexOf(idProduct);
+      console.log('INDEX', index);
       if (index == -1)
         cb("not found item", null);
       else {

@@ -1,6 +1,6 @@
 
-app.controller('basketCtrl', ['$scope', '$location', 'basketService', 'OrderService',
-  function ($scope, $location, basketService, OrderService) {
+app.controller('basketCtrl', ['$scope', '$location', 'basketService', 'OrderService', 'AccountService',
+  function ($scope, $location, basketService, OrderService, AccountService) {
     $scope.allPrice = 1000;
     $scope.items = [];
     $scope.isNotEmpty = true;
@@ -11,6 +11,15 @@ app.controller('basketCtrl', ['$scope', '$location', 'basketService', 'OrderServ
       address: "",
       phone: ""
     };
+
+    if(AccountService.getUser()) {
+      var user = AccountService.getUser();
+      $scope.model.email = user.email;
+      $scope.model.name = user.name;
+      $scope.model.secondName = user.secondName;
+      $scope.model.address = user.address;
+      $scope.model.phone = user.phone;
+    }
 
     $scope.isFinish = false;
     $scope.errorVisible = false;

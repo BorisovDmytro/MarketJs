@@ -52,8 +52,8 @@
 					</div>
 				</li>
 
-				<div class="input-group" style="position: absolute; top: 10px; left: 300px; width: 20%;">
-					<input type="text" class="form-control" style="border-radius: 10px;" placeholder="search" ng-model="searchText">
+				<div class="input-group" style="position: absolute; top: 10px; right: 275px; width: 20%;">
+					<input type="text" class="form-control" style="border-radius: 20px;" placeholder="search" ng-model="searchText">
 					<!--a class="input-group-addon btn-default" href="#/search/{{searchText}}">OK</a-->
 				</div>
 
@@ -66,15 +66,24 @@
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown">
-            Account
+            {{loginLog}}
             <span class="caret"></span>
           </a>
 					<ul class="dropdown-menu" style="font: 20px arial;">
-						<li style="cursor: pointer;">
+						<li style="cursor: pointer;" ng-show="!isLogin">
 							<a ng-click="onShowSignUpDlg()">Sign up</a>
 						</li>
-						<li style="cursor: pointer;">
+						<li style="cursor: pointer;" ng-show="!isLogin">
 							<a ng-click="onShowLoginDlg()">Log in</a>
+						</li>
+						<li style="cursor: pointer;" ng-show="isLogin">
+							<a>User informtion</a>
+						</li>
+						<li style="cursor: pointer;" ng-show="isLogin">
+							<a>Orders</a>
+						</li>
+						<li style="cursor: pointer;" ng-show="isLogin">
+							<a ng-click="onLogOut()">Log out</a>
 						</li>
 					</ul>
 				</li>

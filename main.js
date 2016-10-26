@@ -120,7 +120,7 @@ app.get('/basket/items', (req, res) => {
   });
 });
 
-app.delete('/backet', (req, res) => {
+app.delete('/basket', (req, res) => {
   var id = req.query.id;
   var idBasket = req.session.idBasket;
   Basket.removeItem(idBasket, id, (err, doc) => {
@@ -157,7 +157,7 @@ app.put('/account', (req, res) => {
 app.get('/account', (req, res) => {
   if (req.session.user) {
     var account = req.session.user;
-    Account.autoLogin(account.email, account.pass, (err, doc) => {
+    Account.autoLogin(account.email, account.password, (err, doc) => {
       if (err)
         res.status(404).send("not login");
       else
@@ -177,6 +177,11 @@ app.post('/account', (req, res) => {
       res.send(doc);
     }
   });
+});
+
+app.delete('/account', (req, res) => {
+  req.session.user = null;
+  res.send('Ok');
 });
 
 app.listen(config.get("port"), config.get("host"), () => {
