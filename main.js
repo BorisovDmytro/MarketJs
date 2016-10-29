@@ -143,6 +143,21 @@ app.post('/order', (req, res) => {
     });
 });
 
+app.get('/order/:email', (req, res) => {
+  var email = req.params.email;
+  if(!email) {
+     res.status(404).send("Error get orders " + err);
+  } else {
+    Order.getByEmail(email, (err, data) => {
+      if(err)
+        res.status(404).send("Error get orders " + err);
+      else 
+        res.send(data);
+    });
+  }
+  
+});
+
 app.put('/account', (req, res) => {
   var data = req.query;
   Account.signUp(data.email, data.pass, data.name, data.secondName, data.address, data.phone,
@@ -169,10 +184,12 @@ app.get('/account', (req, res) => {
 });
 
 app.post('/account', (req, res) => {
+  console.log(req.body);
   Account.manualLogin(req.body.email, req.body.pass, (err, doc) => {
-    if (err)
-      res.status(404).send(err);
-    else {
+    if (err) {
+      console.log('Error', err);
+      res.status(404).send("invalid-data");
+    } else {
       req.session.user = doc;
       res.send(doc);
     }

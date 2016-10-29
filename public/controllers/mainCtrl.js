@@ -95,10 +95,11 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
       } else {
         AccountService.login($scope.login, function (err, data) {
           if(err) {
-            $scope.loginErrorMessage = err;
+            $scope.loginErrorMessage = "Invalid data";
             $scope.loginError = true;
-            $scope.isLogin = true;
+            $scope.isLogin = false;
           } else {
+            $scope.isLogin = true;
             $scope.loginError = false;
             $('#loginDlg').modal('hide');
           }
@@ -115,6 +116,7 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
           $scope.isLogin = false;
         }  
       });
-    }
+    } 
+
   }]);
 
