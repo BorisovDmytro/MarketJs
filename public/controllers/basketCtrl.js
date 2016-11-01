@@ -1,7 +1,7 @@
 
 app.controller('basketCtrl', ['$scope', '$location', 'basketService', 'OrderService', 'AccountService',
   function ($scope, $location, basketService, OrderService, AccountService) {
-    $scope.allPrice = 1000;
+    $scope.allPrice = 0;
     $scope.items = [];
     $scope.isNotEmpty = true;
     $scope.model = {
@@ -78,6 +78,7 @@ app.controller('basketCtrl', ['$scope', '$location', 'basketService', 'OrderServ
         $scope.errorVisible = true;
       else {
         $scope.errorVisible = false;
+        $scope.model.price =  $scope.allPrice;
         OrderService.add($scope.model, function (err, data) {
           if (!err) {
             console.log(data);

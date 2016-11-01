@@ -6,7 +6,7 @@ const Products = require('./productController.js');
 const Basket = require('./basketController.js');
 const async = require("async");
 
-exports.add = function (idBasket, email, name, secondName, address, phone, cb) {
+exports.add = function (idBasket, email, name, secondName, address, phone, price,  cb) {
   var date = new Date().toISOString();
   Basket.getById(idBasket, (err, doc) => {
     if (err)
@@ -20,7 +20,8 @@ exports.add = function (idBasket, email, name, secondName, address, phone, cb) {
         secondName: secondName,
         address: address,
         phone: phone,
-        progress: "completed"
+        progress: "processing",
+        price: price
       });
 
       order.save((err, order_save) => {

@@ -108,6 +108,10 @@ var Order = new Schema({
   progress: {
     type: String,
     require: true
+  },
+  price: {
+    type: String,
+    require: true
   }
 });
 

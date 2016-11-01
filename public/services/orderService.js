@@ -15,7 +15,7 @@ app.factory('OrderService', ['$http',
         });
       },
 
-      getAll: function (email) {
+      getAll: function (email, cb) {
         http({
           method: "GET",
           url: "/order/" + email

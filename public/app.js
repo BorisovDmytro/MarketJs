@@ -19,6 +19,6 @@ app.config(function ($routeProvider) {
     }).when("/orders", {
       templateUrl: "./view/orders.html",
       controller: "ordersCtrl"
-    });//
+    });
 });
 
