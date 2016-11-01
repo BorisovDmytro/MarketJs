@@ -28,6 +28,7 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
         $scope.loginLog = user.name;
         $scope.isLogin = true;
       } else {
+        $scope.isLogin = false;
         console.log('not loged');
       }
     });
@@ -95,10 +96,11 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
       } else {
         AccountService.login($scope.login, function (err, data) {
           if(err) {
-            $scope.loginErrorMessage = "Invalid data";
+            $scope.loginErrorMessage = "Invalid password or email";
             $scope.loginError = true;
             $scope.isLogin = false;
           } else {
+            $scope.loginLog = data.name;
             $scope.isLogin = true;
             $scope.loginError = false;
             $('#loginDlg').modal('hide');

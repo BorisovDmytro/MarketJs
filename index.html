@@ -25,7 +25,7 @@
 	<script src="./controllers/mainCtrl.js"></script>
 	<script src="./controllers/searchCtrl.js"></script>
 	<script src="./controllers/basketCtrl.js"></script>
-
+	<script src="./controllers/ordersCtrl.js"></script>
 </head>
 
 <body ng-app="app" ng-controller="mainCtrl">
@@ -77,7 +77,7 @@
 							<a ng-click="onShowLoginDlg()">Log in</a>
 						</li>
 						<li style="cursor: pointer;" ng-show="isLogin">
-							<a>Orders</a>
+							<a href="#/orders">Orders</a>
 						</li>
 						<li style="cursor: pointer;" ng-show="isLogin">
 							<a ng-click="onLogOut()">Log out</a>

@@ -134,7 +134,7 @@ app.delete('/basket', (req, res) => {
 app.post('/order', (req, res) => {
   var idBasket = req.session.idBasket;
   Order.add(idBasket, req.query.email, req.query.name,
-    req.query.secondName, req.query.address, req.query.phone,
+    req.query.secondName, req.query.address, req.query.phone, req.query.price, 
     (err, data) => {
       if (err)
         res.status(404).send("Error get  basket" + err);
