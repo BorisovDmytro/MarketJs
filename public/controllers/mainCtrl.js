@@ -33,6 +33,12 @@ app.controller('mainCtrl', ['$scope', '$location', 'ProductService', 'AccountSer
       }
     });
 
+    $scope.onSearchKeyDown = function(event) {
+      if(event.key == "Enter" && $scope.searchText != "") {
+        location.href = "#/search/" + $scope.searchText;
+      }
+    }
+
     $scope.init = function () {
       var type = $location.path().split('/')[1];
       var name = $location.path().split('/')[2];

@@ -19,23 +19,21 @@
 		<section class="col-xs-4 col-sm-4 col-md-3 col-lg-2" 
 		ng-repeat="item in model | orderBy:price:filter">
 
-			<a class="thumbnail product-item" 
+			<a class="thumbnail product-item" style="height: 300px;"
 			   href="#/categories/{{item.categories}}/{{item._id}}">
-				<img ng-src="{{item.imgUrl[0]}}" alt="...">
-				<div style="margin-top: -52px; margin-right: 10px;">
+				<img ng-src="{{item.imgUrl[0]}}" alt="..." style="height: 70%;">
+				<div class="caption" style="height: 30%;">
 					<p class="label label-success" style="font-size: 18px;"
-					 ng-show="item.count != 0">{{item.price}}$</p>
+					 	 ng-show="item.count != 0">{{item.price}}$</p>
 					<p class="label label-danger" style="font-size: 18px;" 
-						ng-show="item.count == 0">Not available</p>
-				</div>
-				<div class="caption">
+						 ng-show="item.count == 0">Not available</p>
 					<h3>{{item.name}}</h3>
 				</div>
 			</a>
 		</section>
 
 		<section class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
-			<div class="thumbnail product-item" ng-click="onNextClick()">
+			<div class="thumbnail product-item" ng-click="onNextClick()" style="height: 300px;">
 				<img ng-src="/images/load.png" alt="...">
 				<p style="text-align: center; font: 24px arial;">Show next 10 items</p>
 			</div>

@@ -53,7 +53,8 @@
 				</li>
 
 				<div class="input-group" style="position: absolute; top: 10px; right: 275px; width: 20%;">
-					<input type="text" class="form-control" style="border-radius: 20px;" placeholder="search" ng-model="searchText">
+					<input type="text" class="form-control" style="border-radius: 20px;"
+					       placeholder="search" ng-model="searchText" ng-keydown="onSearchKeyDown($event)">
 					<!--a class="input-group-addon btn-default" href="#/search/{{searchText}}">OK</a-->
 				</div>
 

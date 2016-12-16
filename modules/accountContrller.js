@@ -67,4 +67,3 @@ exports.signUp = (email, pass, name, secondName, address, phone, cb) => {
     }
   });
 }
-

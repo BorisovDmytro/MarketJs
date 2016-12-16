@@ -3,7 +3,10 @@ var app = angular.module('app', ["ngRoute"]);
 
 app.config(function ($routeProvider) {
   $routeProvider
-    .when('/', { template: '' })
+    .when("/", {
+       templateUrl: "./view/main.html",
+       controller: "mainCtrl"
+      })
     .when("/categories/:name", {
       templateUrl: "./view/categories.html",
       controller: "categoriesCtrl"

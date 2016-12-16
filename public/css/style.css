@@ -4,4 +4,5 @@
 
 .product-item:hover {
   border: 1px solid #1279FF;
+  height: 300px;
 }
