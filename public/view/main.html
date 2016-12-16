@@ -1,0 +1,10 @@
+<div class="container" style="margin-top: 60px; width: 100%;" ng-init="init()">
+    <div class="col-sm-6 col-md-4" ng-repeat="item in categories">
+        <a class="thumbnail" href="#categories/{{item.name}}">
+            <img ng-src="{{item.imgUrl}}" alt="..." width="200">
+            <div class="caption">
+                <p style="text-align: center;">{{item.name}}</p>
+            </div>
+        </a>
+    </div>
+</div>
